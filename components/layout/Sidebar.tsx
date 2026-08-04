@@ -45,27 +45,24 @@ export function Sidebar({ items, isOpen, onClose }: SidebarProps) {
               pathname === item.href || pathname.startsWith(`${item.href}/`);
 
             return (
-              <Button
+              <Link
                 key={item.href}
-                variant={isActive ? "secondary" : "ghost"}
+                href={item.href}
                 className={cn(
-                  "w-full justify-start gap-3",
+                  "w-full justify-start gap-3 inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2",
                   isActive
                     ? "bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground hover:bg-accent hover:text-accent-foreground"
                 )}
-                asChild
                 onClick={() => {
                   if (window.innerWidth < 768) {
                     onClose();
                   }
                 }}
               >
-                <Link href={item.href}>
-                  <Icon className="h-4 w-4" />
-                  {item.title}
-                </Link>
-              </Button>
+                <Icon className="h-4 w-4" />
+                {item.title}
+              </Link>
             );
           })}
         </nav>

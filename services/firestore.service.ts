@@ -35,11 +35,11 @@ export class FirestoreService<T extends DocumentData> {
   }
 
   async create(id: string, data: WithFieldValue<T>): Promise<void> {
-    await setDoc(doc(db, this.collectionName, id), data);
+    await setDoc(doc(db, this.collectionName, id) as any, data);
   }
 
   async update(id: string, data: PartialWithFieldValue<T>): Promise<void> {
-    await updateDoc(doc(db, this.collectionName, id), data);
+    await updateDoc(doc(db, this.collectionName, id) as any, data as any);
   }
 
   async delete(id: string): Promise<void> {

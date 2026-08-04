@@ -49,15 +49,15 @@ export function Navbar({ onMenuClick }: NavbarProps) {
 
           {user && (
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+              <DropdownMenuTrigger>
+                <div className="relative h-8 w-8 rounded-full overflow-hidden cursor-pointer">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={user.photoURL || ""} alt={user.name} />
                     <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                   </Avatar>
-                </Button>
+                </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuContent className="w-56" align="end">
                 <div className="flex flex-col space-y-1 p-2">
                   <p className="text-sm font-medium leading-none">{user.name}</p>
                   <p className="text-xs leading-none text-muted-foreground">
