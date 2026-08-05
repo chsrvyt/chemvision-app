@@ -16,6 +16,9 @@ import {
   TrendingDown,
   FileBarChart,
   Award,
+  CheckCircle2,
+  ClipboardCheck,
+  Clock3,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -40,6 +43,9 @@ const iconMap: Record<string, LucideIcon> = {
   TrendingUp,
   FileBarChart,
   Award,
+  CheckCircle2,
+  ClipboardCheck,
+  Clock3,
 };
 
 const colorMap = {
