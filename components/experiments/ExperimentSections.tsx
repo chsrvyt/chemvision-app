@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, Calculator, CheckCircle2, CircleHelp, FileText, LockKeyhole, PlayCircle, ShieldCheck, Video } from "lucide-react";
+import { AlertTriangle, Calculator, CircleHelp, FileText, LockKeyhole, PlayCircle, ShieldCheck, Video } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import type { ExperimentConfig } from "./experiment-types";
+export { StudentSubmission as SubmissionPanel } from "@/components/submissions/StudentSubmission";
 
 export function TheorySection({ section }: { section: ExperimentConfig["theory"] }) { return <Card><CardHeader><CardTitle>{section.title}</CardTitle></CardHeader><CardContent><p className="text-sm leading-7 text-muted-foreground">{section.content}</p></CardContent></Card>; }
 
@@ -30,5 +31,3 @@ export function GraphComponent() { return <Card><CardHeader><CardTitle>Graph</Ca
 export function MediaComponents({ pdf, video }: { pdf?: ExperimentConfig["referencePdf"]; video?: ExperimentConfig["referenceVideo"] }) { return <div className="grid gap-4 sm:grid-cols-2"><Card><CardHeader><CardTitle className="flex items-center gap-2"><FileText className="h-4 w-4 text-primary" />Reference PDF</CardTitle></CardHeader><CardContent><Button variant="outline" className="w-full" disabled={!pdf?.url}><FileText className="mr-2 h-4 w-4" />{pdf?.label ?? "No PDF configured"}</Button><div className="mt-3 flex h-24 items-center justify-center rounded-lg border border-dashed text-xs text-muted-foreground">PDF viewer placeholder</div></CardContent></Card><Card><CardHeader><CardTitle className="flex items-center gap-2"><Video className="h-4 w-4 text-primary" />Reference Video</CardTitle></CardHeader><CardContent><Button variant="outline" className="w-full" disabled={!video?.url}><Video className="mr-2 h-4 w-4" />{video?.label ?? "No video configured"}</Button><div className="mt-3 flex h-24 items-center justify-center rounded-lg border border-dashed text-xs text-muted-foreground">Video player placeholder</div></CardContent></Card></div>; }
 
 export function VivaQuestionCard({ questions }: { questions: string[] }) { const [open, setOpen] = useState<number | null>(null); return <Card><CardHeader><CardTitle className="flex items-center gap-2"><CircleHelp className="h-4 w-4 text-primary" />Viva Questions</CardTitle></CardHeader><CardContent className="space-y-2">{questions.map((question, index) => <button key={question} type="button" onClick={() => setOpen(open === index ? null : index)} className="w-full rounded-lg border p-3 text-left text-sm transition-colors hover:bg-muted"><span className="font-medium">{index + 1}. {question}</span>{open === index && <p className="mt-2 text-xs text-muted-foreground">Answer workspace ready for teacher-provided guidance.</p>}</button>)}</CardContent></Card>; }
-
-export function SubmissionPanel({ status }: { status: ExperimentConfig["status"] }) { return <Card className="border-primary/20 bg-primary/5"><CardHeader><CardTitle>Submission</CardTitle><CardDescription>Submit your completed observations and result for teacher evaluation.</CardDescription></CardHeader><CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-center gap-2 text-sm text-muted-foreground"><CheckCircle2 className="h-4 w-4 text-primary" />Current status: <Badge variant="outline">{status}</Badge></div><Button disabled><CheckCircle2 className="mr-2 h-4 w-4" />Submit Experiment</Button></CardContent></Card>; }
