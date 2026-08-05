@@ -1,0 +1,25 @@
+import type { ExperimentConfig } from "../experiment-types";
+
+export const acidBaseTitrationConfig: ExperimentConfig = {
+  id: "acid-base-titration",
+  title: "Acid-Base Titration",
+  subject: "Analytical Chemistry",
+  experimentNumber: "01",
+  aim: "Determine the strength of the given hydrochloric acid solution by titrating it against a standard sodium hydroxide solution.",
+  theory: { id: "theory", title: "Theory", content: "Acid-base titration is a quantitative volumetric analysis in which an acid reacts with a base of known concentration. The endpoint is identified with phenolphthalein when the solution changes from colourless to a permanent pale pink." },
+  principle: { id: "principle", title: "Principle", content: "At the equivalence point, the reacting acid and base have neutralized each other according to their stoichiometric ratio. For a monoprotic acid and base, N₁V₁ = N₂V₂." },
+  apparatus: ["Burette", "Pipette", "Conical Flask", "Indicator Bottle", "Wash Bottle", "White Tile"],
+  chemicals: ["Standard sodium hydroxide (NaOH)", "Hydrochloric acid (HCl)", "Phenolphthalein indicator", "Distilled water"],
+  safetyPrecautions: ["Wear safety goggles and gloves while handling acid and alkali.", "Rinse spills immediately with plenty of water and inform the teacher.", "Do not pipette by mouth; use the configured pipette workflow.", "Keep the burette tip pointed away from people."],
+  procedure: ["Read the instructions and prepare the virtual workbench.", "Fill the burette with standard sodium hydroxide solution.", "Transfer hydrochloric acid into the conical flask using the pipette.", "Add phenolphthalein and place the flask over the white tile.", "Open the burette valve gradually until the endpoint is reached."],
+  demonstration: { title: "Titration Demonstration", description: "The interactive titration workspace below replaces the static demonstration when this configuration is loaded.", steps: ["Setup", "Prepare", "Titrate", "Endpoint"] },
+  observation: { columns: [{ key: "trial", label: "Trial" }, { key: "initial", label: "Initial Reading" }, { key: "final", label: "Final Reading" }, { key: "volume", label: "Volume Used" }], rows: 3 },
+  calculations: { title: "Titration calculation", formula: "N₁V₁ = N₂V₂", description: "Use the concordant titre values to calculate the normality and strength of the unknown acid." },
+  result: "The strength of the hydrochloric acid is generated from the concordant average titre.",
+  vivaQuestions: ["What is the role of phenolphthalein in this titration?", "Why is a white tile placed below the conical flask?", "What does a concordant titre indicate?"],
+  referencePdf: { label: "Acid-base titration manual" },
+  referenceVideo: { label: "Titration technique video" },
+  teacherNotes: "Look for a steady endpoint approach and concordant readings before evaluation.",
+  status: "In progress",
+  completionPercentage: 36,
+};
