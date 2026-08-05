@@ -1,0 +1,25 @@
+import type { ExperimentConfig } from "./experiment-types";
+
+export const sampleExperimentConfig: ExperimentConfig = {
+  id: "configured-experiment-preview",
+  title: "Configured Experiment Preview",
+  subject: "Analytical Chemistry",
+  experimentNumber: "04",
+  aim: "Study the configured workflow and record observations using the reusable experiment workspace.",
+  theory: { id: "theory", title: "Theory", content: "This section is populated from the experiment configuration. The engine does not assume a specific chemistry topic or calculation model." },
+  principle: { id: "principle", title: "Principle", content: "This section accepts any principle statement supplied by a subject or experiment author." },
+  apparatus: ["Configured apparatus item", "Measurement instrument", "Observation vessel"],
+  chemicals: ["Configured reagent", "Reference solution", "Indicator or sample"],
+  safetyPrecautions: ["Wear appropriate laboratory protection.", "Follow the configured handling guidance.", "Dispose of materials according to laboratory policy."],
+  procedure: ["Read the configured theory and principle.", "Review the demonstration sequence.", "Perform the practical workflow.", "Record observations and review the result."],
+  demonstration: { title: "Interactive Demonstration", description: "A configuration-driven demonstration surface ready for a future simulation adapter.", steps: ["Prepare", "Measure", "Observe", "Review"] },
+  observation: { columns: [{ key: "trial", label: "Trial", placeholder: "1" }, { key: "reading", label: "Reading", placeholder: "Enter reading" }, { key: "note", label: "Note", placeholder: "Add note" }], rows: 3 },
+  calculations: { title: "Configured calculation", formula: "result = f(observations)", description: "Calculation rules will be supplied by the experiment configuration in a later implementation phase." },
+  result: "The configured result summary will be generated from the completed workflow.",
+  vivaQuestions: ["What is the purpose of this experiment?", "Which observation should be recorded first?", "What safety consideration applies to this workflow?"],
+  referencePdf: { label: "Open reference manual" },
+  referenceVideo: { label: "Watch reference video" },
+  teacherNotes: "This is a UI-only engine preview. Teacher feedback will be connected later.",
+  status: "In progress",
+  completionPercentage: 46,
+};

@@ -2,9 +2,17 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { User as FirebaseUser, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 import { User, UserRole } from "@/types";
+import { getUserProfile } from "@/services/auth.service";
+
+async function loadProfileWithRetry(uid: string, attempts = 3): Promise<User | null> {
+  const profile = await getUserProfile(uid);
+  if (profile || attempts <= 1) return profile;
+
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  return loadProfileWithRetry(uid, attempts - 1);
+}
 
 interface AuthContextType {
   user: User | null;
@@ -26,28 +34,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currUser) => {
+    let cancelled = false;
+
+    const unsubscribe = onAuthStateChanged(auth, (currUser) => {
+      if (cancelled) return;
+
       setFirebaseUser(currUser);
-      if (currUser) {
-        // Fetch custom user profile from Firestore
-        try {
-          const userDoc = await getDoc(doc(db, "users", currUser.uid));
-          if (userDoc.exists()) {
-            setUser(userDoc.data() as User);
-          } else {
+      setLoading(true);
+
+      if (!currUser) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      void loadProfileWithRetry(currUser.uid)
+        .then((profile) => {
+          if (!cancelled) setUser(profile);
+        })
+        .catch((error) => {
+          if (!cancelled) {
+            console.error("Error fetching user profile:", error);
             setUser(null);
           }
-        } catch (error) {
-          console.error("Error fetching user profile:", error);
-          setUser(null);
-        }
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
     });
 
-    return () => unsubscribe();
+    return () => {
+      cancelled = true;
+      unsubscribe();
+    };
   }, []);
 
   const value = {
