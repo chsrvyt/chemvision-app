@@ -82,6 +82,7 @@ export const TEACHER_NAV_ITEMS = [
   { title: "Students", href: "/teacher/students", icon: "Users" },
   { title: "Subjects", href: "/teacher/subjects", icon: "BookOpen" },
   { title: "Experiments", href: "/teacher/experiments", icon: "FlaskConical" },
+  { title: "Evaluations", href: "/teacher/evaluate", icon: "ClipboardCheck" },
   { title: "Assignments", href: "/teacher/assignments", icon: "ClipboardList" },
   { title: "Marks", href: "/teacher/marks", icon: "Award" },
   { title: "Attendance", href: "/teacher/attendance", icon: "ClipboardCheck" },
