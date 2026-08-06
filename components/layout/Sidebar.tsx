@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
 import { NavItem } from "@/types";
 import * as Icons from "lucide-react";
-import { Button } from "@/components/ui/button";
+import type { LucideIcon } from "lucide-react";
 
 interface SidebarProps {
   items: NavItem[];
@@ -40,7 +40,7 @@ export function Sidebar({ items, isOpen, onClose }: SidebarProps) {
 
         <nav className="flex-1 space-y-1 overflow-y-auto p-4">
           {items.map((item) => {
-            const Icon = (Icons as any)[item.icon || "Circle"] || Icons.Circle;
+            const Icon = (Icons as unknown as Record<string, LucideIcon>)[item.icon || "Circle"] || Icons.Circle;
             const isActive =
               pathname === item.href || pathname.startsWith(`${item.href}/`);
 

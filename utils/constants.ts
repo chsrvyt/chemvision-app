@@ -68,38 +68,21 @@ export const GRADE_MAP: Record<string, { min: number; max: number }> = {
 
 export const ADMIN_NAV_ITEMS = [
   { title: "Dashboard", href: "/admin", icon: "LayoutDashboard" },
-  { title: "Teachers", href: "/admin/teachers", icon: "GraduationCap" },
-  { title: "Students", href: "/admin/students", icon: "Users" },
   { title: "Subjects", href: "/admin/subjects", icon: "BookOpen" },
-  { title: "Practicals", href: "/admin/practicals", icon: "FlaskConical" },
-  { title: "Announcements", href: "/admin/announcements", icon: "Megaphone" },
-  { title: "Reports", href: "/admin/reports", icon: "FileBarChart" },
-  { title: "Settings", href: "/admin/settings", icon: "Settings" },
 ];
 
 export const TEACHER_NAV_ITEMS = [
   { title: "Dashboard", href: "/teacher", icon: "LayoutDashboard" },
-  { title: "Students", href: "/teacher/students", icon: "Users" },
   { title: "Subjects", href: "/teacher/subjects", icon: "BookOpen" },
-  { title: "Experiments", href: "/teacher/experiments", icon: "FlaskConical" },
   { title: "Evaluations", href: "/teacher/evaluate", icon: "ClipboardCheck" },
-  { title: "Assignments", href: "/teacher/assignments", icon: "ClipboardList" },
-  { title: "Marks", href: "/teacher/marks", icon: "Award" },
   { title: "Attendance", href: "/teacher/attendance", icon: "ClipboardCheck" },
-  { title: "Reports", href: "/teacher/reports", icon: "FileBarChart" },
-  { title: "Notifications", href: "/teacher/notifications", icon: "Bell" },
-  { title: "Profile", href: "/teacher/profile", icon: "User" },
 ];
 
 export const STUDENT_NAV_ITEMS = [
   { title: "Dashboard", href: "/student", icon: "LayoutDashboard" },
   { title: "Subjects", href: "/student/subjects", icon: "BookOpen" },
   { title: "Virtual Laboratory", href: "/student/laboratory", icon: "Beaker" },
-  { title: "Experiments", href: "/student/experiments", icon: "FlaskConical" },
-  { title: "Assignments", href: "/student/assignments", icon: "ClipboardList" },
-  { title: "Reports", href: "/student/reports", icon: "FileBarChart" },
-  { title: "Notifications", href: "/student/notifications", icon: "Bell" },
-  { title: "Profile", href: "/student/profile", icon: "User" },
+  { title: "Practicals", href: "/student/practicals", icon: "FlaskConical" },
 ];
 
 // ── Role Labels ──────────────────────────────────────────────

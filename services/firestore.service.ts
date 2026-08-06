@@ -9,8 +9,10 @@ import {
   query,
   QueryConstraint,
   DocumentData,
+  DocumentReference,
   WithFieldValue,
   PartialWithFieldValue,
+  UpdateData,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
@@ -35,11 +37,13 @@ export class FirestoreService<T extends DocumentData> {
   }
 
   async create(id: string, data: WithFieldValue<T>): Promise<void> {
-    await setDoc(doc(db, this.collectionName, id) as any, data);
+    const docRef = doc(db, this.collectionName, id) as DocumentReference<T, T>;
+    await setDoc(docRef, data);
   }
 
   async update(id: string, data: PartialWithFieldValue<T>): Promise<void> {
-    await updateDoc(doc(db, this.collectionName, id) as any, data as any);
+    const docRef = doc(db, this.collectionName, id) as DocumentReference<T, T>;
+    await updateDoc(docRef, data as UpdateData<T>);
   }
 
   async delete(id: string): Promise<void> {
